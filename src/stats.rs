@@ -1,20 +1,26 @@
-struct Stats {
-    strength:  i32,
-    defense:   i32,
-    magic:     i32,
-    endurance: i32,
-    hitpoints: i32,
+use std::rand;
+use std::rand::Rng;
+
+#[deriving(Clone)]
+pub struct Stats {
+    strength:     i32,
+    defense:      i32,
+    magic:        i32,
+    intelligence: i32,
+    endurance:    i32,
+    hitpoints:    i32,
 }
 
 impl Stats {
 
     pub fn new() -> Stats {
         Stats {
-            strength: 1i32,
-            defense: 1i32,
-            magic: 1i32,
-            endurance: 10i32,
-            hitpoints: 10i32, }
+            strength:     1i32,
+            defense:      1i32,
+            magic:        1i32,
+            intelligence: 1i32,
+            endurance:    10i32,
+            hitpoints:    10i32, }
     }
 
     /// Safe way of receiving damage or healing. Pass positive numbers to heal. Negative to damage
@@ -31,38 +37,20 @@ impl Stats {
         }
         else {
             /* Damage */
-            self.hitpoints = if -d > self.hitpoints { 0 } else { self.hitpoints + d };
+            let with_defense: i32 = self.defense - d;
+            let all: i32 = if with_defense < 0 { 0 } else { with_defense };
+            self.hitpoints = if -d > self.hitpoints { 0 } else { self.hitpoints + with_defense };
         }
     }
 
-}
+    /// Attack, and return something with strength with a +- deviance of 10%
+    pub fn attack(&self) -> i32 {
+        let s: f32      = self.strength as f32;
+        let mut r       = rand::task_rng();
+        let sign: bool  = r.gen::<bool>();
+        let result: f32 = s + if sign {1.0} else {-1.0} * s * 0.10f32;
+        result as i32
+    }
 
-#[test]
-fn test_simple_damage() {
-    let mut s: Stats = Stats::new();
-    s.apply(-2);
-    assert!(8i32 == s.hitpoints);
-}
-
-#[test]
-fn test_overkill_damage() {
-    let mut s: Stats = Stats::new();
-    s.apply(-9000);
-    assert!(0i32 == s.hitpoints);
-}
-
-#[test]
-fn test_damage_and_heal() {
-    let mut s: Stats = Stats::new();
-    s.apply(-3);
-    s.apply(2);
-    assert!(s.endurance - 3 + 2 == s.hitpoints);
-}
-
-#[test]
-fn test_overheal_damage() {
-    let mut s: Stats = Stats::new();
-    s.apply(9000);
-    assert!(s.endurance == s.hitpoints);
 }
 
