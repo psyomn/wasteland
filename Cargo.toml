@@ -4,5 +4,8 @@ name = "wasteland"
 version = "0.0.1"
 authors = ["psyomn <lethaljellybean@gmail.com>"]
 
+[[bin]]
+name = "wasteland-client"
+
 [dependencies.ncurses]
 git = "https://github.com/jeaye/ncurses-rs.git"

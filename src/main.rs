@@ -6,12 +6,15 @@ extern crate wasteland;
 use std::char;
 use ncurses::*;
 
-use stats::{Stats};
-use map::{Map};
-mod stats;
-mod map;
-mod tile;
-mod game_entity;
+use wasteland::stats::{Stats};
+use wasteland::map::{Map};
+use wasteland::tile::{Tile};
+use wasteland::game_entity::{Entity};
+
+// mod stats;
+// mod map;
+// mod tile;
+// mod game_entity;
 
 fn main() {
     let s: Stats = Stats::new();

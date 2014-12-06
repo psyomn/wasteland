@@ -1,5 +1,8 @@
 use std::fmt;
+
 use tile::{Tile};
+use game_entity::{Entity};
+use helpers;
 
 pub struct Map {
     name: String,
@@ -46,6 +49,18 @@ impl Map {
     /// Name/label of map
     pub fn name(&mut self, n: String) {
         self.name = n;
+    }
+
+    pub fn height(&self) -> u32 { self.height }
+
+    pub fn width(&self)  -> u32 { self.width }
+
+    /// Place an entity at a particular coordinate on map
+    pub fn place_entity_at(&mut self, x: u32, y:u32, e: &mut Entity) {
+    }
+
+    /// Randomize entities on map
+    pub fn randomize() {
     }
 
 }
