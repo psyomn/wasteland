@@ -14,7 +14,7 @@ impl fmt::Show for Map {
 
         for row in self.tiles.iter() {
             for tile in row.iter() {
-                write!(f, "{:2}", tile.count());
+                write!(f, "{}", tile);
             }
             writeln!(f, "");
         }
@@ -43,7 +43,9 @@ impl Map {
         return map;
     }
 
+    /// Name/label of map
     pub fn name(&mut self, n: String) {
         self.name = n;
     }
+
 }

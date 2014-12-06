@@ -22,6 +22,14 @@ impl Clone for Tile {
 
 impl fmt::Show for Tile {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.entities.len())
+        let c = self.entities.len();
+        let mut res : fmt::Result;
+        if c > 0 {
+            res = write!(f, "{:2}", c);
+        }
+        else {
+            res = write!(f, "{}", ". ");
+        }
+        return res;
     }
 }

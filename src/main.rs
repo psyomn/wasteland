@@ -1,13 +1,13 @@
 #![feature(globs)]
 
 extern crate ncurses;
+extern crate wasteland;
 
 use std::char;
 use ncurses::*;
 
 use stats::{Stats};
 use map::{Map};
-
 mod stats;
 mod map;
 mod tile;
