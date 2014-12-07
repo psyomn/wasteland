@@ -2,11 +2,11 @@ use std::fmt;
 
 use tile::{Tile};
 use game_entity::{Entity};
-use helpers;
+use helpers::map_helper;
 
 pub struct Map {
     name: String,
-    tiles: Vec< Vec<Tile> >,
+    tiles: Vec<Vec<Tile>>,
     height: u32,
     width: u32,
 }
@@ -56,11 +56,15 @@ impl Map {
     pub fn width(&self)  -> u32 { self.width }
 
     /// Place an entity at a particular coordinate on map
-    pub fn place_entity_at(&mut self, x: u32, y:u32, e: &mut Entity) {
+    pub fn place_entity_at(&mut self, x: uint, y: uint, mut e: Box<Entity>) {
+        assert!(x < self.width as uint);
+        assert!(y < self.height as uint);
+        self.tiles[y][x].add_entity(e);
     }
 
     /// Randomize entities on map
-    pub fn randomize() {
+    pub fn randomize(&mut self) {
+        map_helper::poppulate_with_entities(self, 10);
     }
 
 }

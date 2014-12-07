@@ -2,7 +2,7 @@ use std::fmt;
 use game_entity::{Entity};
 
 pub struct Tile {
-    entities: Vec<Entity>,
+    entities: Vec<Box<Entity>>,
 }
 
 impl Tile {
@@ -13,6 +13,10 @@ impl Tile {
     /// Count the number of entities on the current tile
     pub fn count(&self) -> uint {
         self.entities.len()
+    }
+
+    pub fn add_entity(&mut self, mut e: Box<Entity>) {
+        self.entities.push(e);
     }
 }
 
