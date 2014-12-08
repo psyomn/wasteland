@@ -29,7 +29,7 @@ impl fmt::Show for Tile {
         let c = self.entities.len();
         let mut res : fmt::Result;
         if c > 0 {
-            res = write!(f, "{:2}", c);
+            res = write!(f, "{:<2}", c);
         }
         else {
             res = write!(f, "{}", ". ");
