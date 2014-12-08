@@ -11,14 +11,14 @@ use builders;
 use static_data;
 
 pub fn run() {
-    init_curses_for_wasteland();
-
     let s: Stats = Stats::new();
     let mut m: Map = Map::new(30u32, 30u32);
-    let session: Box<Session> = builders::session_builder::build_session();
+    let session: Box<Session> = builders::session_builder::build_session("hiro".to_string());
 
     m.name("The badlands".to_string());
     m.randomize();
+
+    init_curses_for_wasteland();
 }
 
 /// Configure ncurses to use colors for the game (init colors go here)
@@ -33,21 +33,32 @@ fn init_curses_for_wasteland() {
 /// Initialize the color pairs for the game
 fn init_wasteland_colors() {
     start_color();
-    init_color(static_ui::c_back, 0,0,0);
-    init_color(static_ui::c_front, 120, 120, 120);
-    init_color(static_ui::c_map_grass, 0, 255, 0);
-    init_color(static_ui::c_map_hero, 255, 0, 0);
-    init_color(static_ui::c_map_border, 165, 42, 0);
+    init_color(static_ui::C_BACK,         0,   0,   0);
+    init_color(static_ui::C_FRONT,      120, 120, 120);
+    init_color(static_ui::C_MAP_GRASS,    0, 255,   0);
+    init_color(static_ui::C_MAP_HERO,   255,   0,   0);
+    init_color(static_ui::C_MAP_BORDER, 165,  42,   0);
 
-    init_pair(static_ui::c_grass_pair,
-              static_ui::c_map_grass,
-              static_ui::c_back);
+    init_pair(static_ui::C_GRASS_PAIR,
+              static_ui::C_MAP_GRASS,
+              static_ui::C_BACK);
 
-    init_pair(static_ui::c_hero_pair,
-              static_ui::c_map_hero,
-              static_ui::c_back);
+    init_pair(static_ui::C_HERO_PAIR,
+              static_ui::C_MAP_HERO,
+              static_ui::C_BACK);
 
-    init_pair(static_ui::c_border_pair,
-              static_ui::c_map_border,
-              static_ui::c_back);
+    init_pair(static_ui::C_BORDER_PAIR,
+              static_ui::C_MAP_BORDER,
+              static_ui::C_BACK);
+
+    init_pair(static_ui::C_DEFAULT_PAIR,
+              static_ui::C_BACK,
+              static_ui::C_FRONT);
+
+    bkgd(' ' as u32 | COLOR_PAIR(static_ui::C_DEFAULT_PAIR) as u32);
+}
+
+/// Anything we need to do to clean up ncurses invokation
+fn ncurses_cleanup() {
+
 }
