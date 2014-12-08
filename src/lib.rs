@@ -1,3 +1,4 @@
+#![feature(globs)]
 pub mod stats;
 pub mod map;
 pub mod tile;
@@ -6,3 +7,4 @@ pub mod helpers;
 pub mod session;
 pub mod builders;
 pub mod static_data;
+pub mod ui;
