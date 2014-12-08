@@ -5,5 +5,5 @@
  * working, then it would be a better idea to separate that stuff in another file.
  */
 
-pub static begin_text : &'static str =
+pub static BEGIN_TEXT : &'static str =
   "In a shady corner, the new guy lights a cigarette to fight the shadowy shadows";

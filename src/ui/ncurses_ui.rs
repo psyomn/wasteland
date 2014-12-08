@@ -3,8 +3,6 @@ use self::ncurses::*;
 
 use stats::{Stats};
 use map::{Map};
-use tile::{Tile};
-use game_entity::{Entity};
 use session::{Session};
 use ui::static_ui;
 use builders;

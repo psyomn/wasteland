@@ -56,7 +56,7 @@ impl Map {
     pub fn width(&self)  -> u32 { self.width }
 
     /// Place an entity at a particular coordinate on map
-    pub fn place_entity_at(&mut self, x: uint, y: uint, mut e: Box<Entity>) {
+    pub fn place_entity_at(&mut self, x: uint, y: uint, e: Box<Entity>) {
         assert!(x < self.width as uint);
         assert!(y < self.height as uint);
         self.tiles[y][x].add_entity(e);

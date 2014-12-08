@@ -1,4 +1,3 @@
-use std::io;
 use session::{Session};
 
 /// Builds a standard game, with defaul values for the player. This is the non ncurses version of

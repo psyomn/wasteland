@@ -15,7 +15,7 @@ impl Tile {
         self.entities.len()
     }
 
-    pub fn add_entity(&mut self, mut e: Box<Entity>) {
+    pub fn add_entity(&mut self, e: Box<Entity>) {
         self.entities.push(e);
     }
 }

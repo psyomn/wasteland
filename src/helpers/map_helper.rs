@@ -11,10 +11,10 @@ pub fn poppulate_with_entities(m: &mut Map, n: u16) {
     let mut r = rand::task_rng();
     let rmx = |max| -> uint { r.gen::<uint>() % max };
 
-    for times in range(0u16, n) {
+    for _ in range(0u16, n) {
         /* n times */
         let (x, y) = (rmx(w), rmx(h));
-        let mut e: Box<Entity> = box Entity::new();
+        let e: Box<Entity> = box Entity::new();
         m.place_entity_at(x, y, e);
     }
 }
