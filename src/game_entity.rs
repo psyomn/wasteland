@@ -12,4 +12,8 @@ impl Entity {
             name: "defname".to_string(),
             stats: Stats::new() }
     }
+
+    pub fn name(&mut self, n: String) {
+        self.name = n;
+    }
 }
