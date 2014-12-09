@@ -18,4 +18,8 @@ impl Session {
     pub fn set_current_map(&mut self, m: Box<Map>) {
         self.current_map = m;
     }
+
+    pub fn map_height(&self) -> i32 { self.current_map.height() as i32 }
+
+    pub fn map_width(&self) -> i32 { self.current_map.width() as i32 }
 }
