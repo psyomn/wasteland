@@ -13,3 +13,4 @@ pub static C_HERO_PAIR:    i16 = 22;
 pub static C_BORDER_PAIR:  i16 = 23;
 pub static C_DEFAULT_PAIR: i16 = 24;
 
+pub static WIDTH_OFFSET: u8 = 2;

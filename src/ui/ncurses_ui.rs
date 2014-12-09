@@ -16,22 +16,26 @@ pub fn run() {
     let session = make_game_data();
     init_curses_for_wasteland();
 
-    draw_border(session);
+    clear();
+    draw_border(&*session);
+    draw_map_contents(&*session);
+    refresh();
+    sleep(Duration::seconds(30));
 
     ncurses_cleanup();
 }
 
 fn make_game_data() -> Box<Session> {
     let s: Stats = Stats::new();
-    let mut m: Map = Map::new(30u32, 30u32);
+    let mut m: Box<Map> = box Map::new(78u32, 30u32);
+    let mut session = builders::session_builder::build_session("hiro".to_string());
     m.name("The badlands".to_string());
     m.randomize();
-
-    builders::session_builder::build_session("hiro".to_string())
+    session.set_current_map(m);
+    session
 }
 
-fn draw_border(s: Box<Session>) {
-    clear();
+fn draw_border(s: &Session) {
 
     attron(A_BOLD());
     attron(COLOR_PAIR(static_ui::C_BORDER_PAIR));
@@ -41,7 +45,7 @@ fn draw_border(s: Box<Session>) {
     let total_height = s.map_height();
 
     /* Top and bottom borders */
-    for y in vec![0, total_height].iter() {
+    for y in vec![0, total_height + 1].iter() {
         for x in range(0, total_width) {
             mv(*y, x);
             printw(" ");
@@ -59,8 +63,31 @@ fn draw_border(s: Box<Session>) {
     attroff(COLOR_PAIR(static_ui::C_BORDER_PAIR));
     attroff(A_BOLD());
 
-    refresh();
-    sleep(Duration::seconds(1));
+}
+
+/// Draw the map contents within the borders
+fn draw_map_contents(s: &Session) {
+    let w = s.map_width();
+    let h = s.map_height();
+
+    for y in range(0, h) {
+        for x in range(0, w) {
+            let coord = (x as uint, y as uint);
+            mv(y+1, x+1);
+            if s.map_count_at(coord) > 0 {
+                /* Entities exist on here */
+                attron(COLOR_PAIR(static_ui::C_HERO_PAIR));
+                printw("E");
+                attroff(COLOR_PAIR(static_ui::C_HERO_PAIR));
+            }
+            else {
+                /* Empty (grass for now) */
+                attron(COLOR_PAIR(static_ui::C_GRASS_PAIR));
+                printw(",");
+                attroff(COLOR_PAIR(static_ui::C_GRASS_PAIR));
+            }
+        }
+    }
 }
 
 /// Configure ncurses to use colors for the game (init colors go here)

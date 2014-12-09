@@ -22,4 +22,21 @@ impl Session {
     pub fn map_height(&self) -> i32 { self.current_map.height() as i32 }
 
     pub fn map_width(&self) -> i32 { self.current_map.width() as i32 }
+
+    /// Counts the entities on a specific coordinate (in tile). Returns -1 if
+    /// something is wrong with the given coordinates (out of bounds)
+    pub fn map_count_at(&self, coord: (uint, uint)) -> i32 {
+        let (x, y) = coord;
+        let x32 = x as i32;
+        let y32 = y as i32;
+
+        // if self.map_height()    < y32
+        //     || self.map_width() < x32
+        //     || (x32 < 0 || y32 < 0) {
+
+        //     /* hm maybe not idiomatic rust... */
+        //     return -1;
+        // }
+        self.current_map.count_at(coord) as i32
+    }
 }

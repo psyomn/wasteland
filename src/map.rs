@@ -67,4 +67,10 @@ impl Map {
         map_helper::poppulate_with_entities(self, 10);
     }
 
+    /// Counts the number of entities on a particular tile
+    pub fn count_at(&self, coord: (uint, uint)) -> uint {
+        let (x, y) = coord;
+        self.tiles[y][x].count()
+    }
+
 }
