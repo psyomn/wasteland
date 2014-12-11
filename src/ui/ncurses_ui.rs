@@ -10,6 +10,7 @@ use ui::static_ui;
 use helpers::session_helper::{make_game_data};
 use static_data;
 
+/// Main game loop is here
 pub fn run() {
     let session = make_game_data();
     init_curses_for_wasteland();
@@ -24,6 +25,8 @@ pub fn run() {
 }
 
 
+/// Draw the border that goes around the map. That means that when drawing map,
+/// we need to specify an offset of +1 for x and y.
 fn draw_border(s: &Session) {
 
     attron(A_BOLD());
