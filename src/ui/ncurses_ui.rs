@@ -5,11 +5,9 @@ use self::ncurses::*;
 use std::io::timer::{sleep};
 use std::time::duration::Duration;
 
-use stats::{Stats};
-use map::{Map};
 use session::{Session};
 use ui::static_ui;
-use builders;
+use helpers::session_helper::{make_game_data};
 use static_data;
 
 pub fn run() {
@@ -25,15 +23,6 @@ pub fn run() {
     ncurses_cleanup();
 }
 
-fn make_game_data() -> Box<Session> {
-    let s: Stats = Stats::new();
-    let mut m: Box<Map> = box Map::new(78u32, 30u32);
-    let mut session = builders::session_builder::build_session("hiro".to_string());
-    m.name("The badlands".to_string());
-    m.randomize();
-    session.set_current_map(m);
-    session
-}
 
 fn draw_border(s: &Session) {
 
