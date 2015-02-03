@@ -6,7 +6,7 @@ use builders;
 /// Make the game data / session
 pub fn make_game_data() -> Box<Session> {
     let s: Stats = Stats::new();
-    let mut m: Box<Map> = box Map::new(78u32, 30u32);
+    let mut m: Box<Map> = Box::new(Map::new(78u32, 30u32));
     let mut session = builders::session_builder::build_session("hiro".to_string());
     m.name("The badlands".to_string());
     m.randomize();

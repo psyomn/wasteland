@@ -2,7 +2,7 @@
 extern crate ncurses;
 use self::ncurses::*;
 
-use std::io::timer::{sleep};
+use std::old_io::timer::{sleep};
 use std::time::duration::Duration;
 
 use session::{Session};

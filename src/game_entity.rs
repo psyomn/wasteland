@@ -1,6 +1,6 @@
 use stats::{Stats};
 
-#[deriving(Clone)]
+#[derive(Clone)]
 pub struct Entity {
     name: String,
     stats: Stats,

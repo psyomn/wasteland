@@ -1,7 +1,7 @@
 use std::rand;
 use std::rand::Rng;
 
-#[deriving(Clone)]
+#[derive(Clone)]
 pub struct Stats {
     strength:     i32,
     defense:      i32,
@@ -46,7 +46,7 @@ impl Stats {
     /// Attack, and return something with strength with a +- deviance of 10%
     pub fn attack(&self) -> i32 {
         let s: f32      = self.strength as f32;
-        let mut r       = rand::task_rng();
+        let mut r       = rand::thread_rng();
         let sign: bool  = r.gen::<bool>();
         let result: f32 = s + if sign {1.0} else {-1.0} * s * 0.10f32;
         result as i32

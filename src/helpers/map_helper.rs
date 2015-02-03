@@ -6,15 +6,18 @@ use map::{Map};
 
 /// Poppulate map, with random entity structs. n is for number of entities
 pub fn poppulate_with_entities(m: &mut Map, n: u16) {
-    let h : uint = m.height() as uint;
-    let w : uint = m.width() as uint;
-    let mut r = rand::task_rng();
-    let rmx = |max| -> uint { r.gen::<uint>() % max };
+    let h : u32 = m.height() as u32;
+    let w : u32 = m.width() as u32;
+    let mut r = rand::thread_rng();
+    let rmx = |&:max:u32| -> u32 {
+        let mut r = rand::thread_rng();
+        r.gen::<u32>() % max };
 
     for _ in range(0u16, n) {
         /* n times */
-        let (x, y) = (rmx(w), rmx(h));
-        let e: Box<Entity> = box Entity::new();
-        m.place_entity_at(x, y, e);
+        let x = rmx(w);
+        let y = rmx(h);
+        let e: Box<Entity> = Box::new(Entity::new());
+        m.place_entity_at(x as uint, y as uint, e );
     }
 }

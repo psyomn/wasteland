@@ -17,7 +17,7 @@ impl fmt::Show for Map {
 
         for row in self.tiles.iter() {
             for tile in row.iter() {
-                write!(f, "{}", tile);
+                write!(f, "{:?}", tile);
             }
             writeln!(f, "");
         }
