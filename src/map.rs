@@ -39,7 +39,8 @@ impl Map {
             map.tiles.push(vec![]);
             for _ in range(0u32, w) {
                 /* For each vector we place the tile */
-                map.tiles[curr_height as uint].push(Tile::new());
+                let chz = curr_height as usize;
+                map.tiles[chz].push(Tile::new());
             }
         }
 
