@@ -15,11 +15,26 @@ pub fn run() {
     let session = make_game_data();
     init_curses_for_wasteland();
 
-    clear();
-    draw_border(&*session);
-    draw_map_contents(&*session);
-    refresh();
-    sleep(Duration::seconds(30));
+    loop {
+        let inp = getch();
+
+        if inp == 27 { break; }
+
+        clear();
+        draw_border(&*session);
+        draw_map_contents(&*session);
+        refresh();
+
+        match inp {
+            KEY_UP => {},
+            KEY_DOWN => {},
+            KEY_LEFT => {},
+            KEY_RIGHT => {},
+
+            /* Any other key should not do anything, and neither force refresh */
+            _ => {continue;},
+        }
+    }
 
     ncurses_cleanup();
 }
