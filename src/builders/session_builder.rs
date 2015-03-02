@@ -6,6 +6,5 @@ use map::{Map};
 pub fn build_session(player_name: String) -> Box<Session> {
     let m: Box<Map>         = Box::new(Map::new(78,30));
     let mut s: Box<Session> = Box::new(Session::new(m));
-    s.set_player_name(player_name);
     s
 }
