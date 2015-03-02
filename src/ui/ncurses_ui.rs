@@ -18,6 +18,7 @@ pub fn run() {
     loop {
         let inp = getch();
 
+        /* Is esc key pressed ? */
         if inp == 27 { break; }
 
         clear();
@@ -32,7 +33,7 @@ pub fn run() {
             KEY_RIGHT => {},
 
             /* Any other key should not do anything, and neither force refresh */
-            _ => {continue;},
+            _ => { continue; },
         }
     }
 
@@ -81,18 +82,22 @@ fn draw_map_contents(s: &Session) {
         for x in range(0, w) {
             let coord = (x as uint, y as uint);
             mv(y+1, x+1);
+
+            /* Are there things at the current location? */
             if s.map_count_at(coord) > 0 {
                 /* Entities exist on here */
                 attron(COLOR_PAIR(static_ui::C_HERO_PAIR));
                 printw("E");
                 attroff(COLOR_PAIR(static_ui::C_HERO_PAIR));
             }
+
             else {
                 /* Empty (grass for now) */
                 attron(COLOR_PAIR(static_ui::C_GRASS_PAIR));
                 printw(",");
                 attroff(COLOR_PAIR(static_ui::C_GRASS_PAIR));
             }
+
         }
     }
 }

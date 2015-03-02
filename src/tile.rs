@@ -3,11 +3,15 @@ use game_entity::{Entity};
 
 pub struct Tile {
     entities: Vec<Box<Entity>>,
+    player: Option<Entity>,
 }
 
 impl Tile {
     pub fn new() -> Tile {
-        Tile { entities: vec![], }
+        Tile {
+            entities: vec![],
+            player: None,
+        }
     }
 
     /// Count the number of entities on the current tile
@@ -18,10 +22,11 @@ impl Tile {
     pub fn add_entity(&mut self, e: Box<Entity>) {
         self.entities.push(e);
     }
+
 }
 
 impl Clone for Tile {
-    fn clone(&self) -> Tile { Tile{ entities: vec![], } }
+    fn clone(&self) -> Tile { Tile{ entities: vec![], player: None} }
 }
 
 impl fmt::Show for Tile {

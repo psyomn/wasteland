@@ -74,4 +74,8 @@ impl Map {
         self.tiles[y][x].count()
     }
 
+    /// Give a reference to some tile, the particular player.
+    pub fn place_player(player: &Entity) {
+    }
+
 }

@@ -39,4 +39,5 @@ impl Session {
         // }
         self.current_map.count_at(coord) as i32
     }
+
 }

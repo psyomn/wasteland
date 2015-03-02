@@ -21,3 +21,4 @@ pub fn poppulate_with_entities(m: &mut Map, n: u16) {
         m.place_entity_at(x as uint, y as uint, e );
     }
 }
+
