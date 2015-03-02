@@ -3,7 +3,7 @@ use game_entity::{Entity};
 
 pub struct Tile {
     entities: Vec<Box<Entity>>,
-    player: Option<Entity>,
+    player: Option<Box<Entity>>,
 }
 
 impl Tile {
@@ -21,6 +21,10 @@ impl Tile {
 
     pub fn add_entity(&mut self, e: Box<Entity>) {
         self.entities.push(e);
+    }
+
+    pub fn set_player(&mut self, player: Option<Box<Entity>>) {
+        self.player = player;
     }
 
 }
