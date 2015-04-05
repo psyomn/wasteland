@@ -136,7 +136,7 @@ fn init_wasteland_colors() {
               static_ui::C_FRONT,
               static_ui::C_BACK);
 
-    bkgd(' ' as u32 | COLOR_PAIR(static_ui::C_DEFAULT_PAIR) as u32);
+    bkgd(' ' as u64 | COLOR_PAIR(static_ui::C_DEFAULT_PAIR) as u64);
 }
 
 /// Anything we need to do to clean up ncurses invokation

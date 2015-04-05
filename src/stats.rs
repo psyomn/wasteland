@@ -2,6 +2,7 @@ use std::rand;
 use std::rand::Rng;
 
 #[derive(Clone)]
+#[derive(Debug)]
 pub struct Stats {
     strength:     i32,
     defense:      i32,

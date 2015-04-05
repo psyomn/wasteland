@@ -11,7 +11,7 @@ impl <'a>Session<'a> {
         Session { current_map: m }
     }
 
-    pub fn set_current_map(&mut self, m: Box<Map>) {
+    pub fn set_current_map<'a>(&mut self, m: Box<'a Map>) {
         self.current_map = m;
     }
 

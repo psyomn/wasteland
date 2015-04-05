@@ -60,7 +60,9 @@ impl Map {
     pub fn place_entity_at(&mut self, x: u32, y: u32, e: Box<Entity>) {
         assert!(x < self.width);
         assert!(y < self.height);
-        self.tiles[y][x].add_entity(e);
+        let yy = y as usize;
+        let xx = x as usize;
+        self.tiles[yy][xx].add_entity(e);
     }
 
     /// Randomize entities on map
@@ -71,7 +73,9 @@ impl Map {
     /// Counts the number of entities on a particular tile
     pub fn count_at(&self, coord: (u32, u32)) -> u32 {
         let (x, y) = coord;
-        self.tiles[y][x].count()
+        let xx = x as usize;
+        let yy = y as usize;
+        self.tiles[yy][xx].count()
     }
 
     /// Give a reference to some tile, the particular player.
