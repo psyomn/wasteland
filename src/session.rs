@@ -1,12 +1,13 @@
 use game_entity::{Entity};
 use map::{Map};
 
-pub struct Session {
-    current_map: Box<Map>,
+pub struct Session<'a> {
+    current_map: Box<&'a mut Map>,
 }
 
-impl Session {
-    pub fn new(m: Box<Map>) -> Session {
+impl <'a>Session<'a> {
+
+    pub fn new(m: Box<&'a mut Map>) -> Session {
         Session { current_map: m }
     }
 
@@ -20,7 +21,7 @@ impl Session {
 
     /// Counts the entities on a specific coordinate (in tile). Returns -1 if
     /// something is wrong with the given coordinates (out of bounds)
-    pub fn map_count_at(&self, coord: (usize, usize)) -> i32 {
+    pub fn map_count_at(&self, coord: (u32, u32)) -> i32 {
         let (x, y) = coord;
         let x32 = x;
         let y32 = y;

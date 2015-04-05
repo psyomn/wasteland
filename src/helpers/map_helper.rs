@@ -9,16 +9,18 @@ pub fn poppulate_with_entities(m: &mut Map, n: u16) {
     let h : u32 = m.height() as u32;
     let w : u32 = m.width() as u32;
     let mut r = rand::thread_rng();
-    let rmx = |&:max:u32| -> u32 {
-        let mut r = rand::thread_rng();
-        r.gen::<u32>() % max };
 
-    for _ in range(0u16, n) {
+    for _ in 0u16 .. n {
         /* n times */
-        let x = rmx(w);
-        let y = rmx(h);
+        let x = random_max(w);
+        let y = random_max(h);
         let e: Box<Entity> = Box::new(Entity::new());
-        m.place_entity_at(x as uint, y as uint, e );
+        m.place_entity_at(x, y, e );
     }
 }
 
+
+fn random_max(max: u32) -> u32 {
+    let mut r = rand::thread_rng();
+    r.gen::<u32>() % max
+}

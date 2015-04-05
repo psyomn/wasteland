@@ -54,7 +54,7 @@ fn draw_border(s: &Session) {
 
     /* Top and bottom borders */
     for y in vec![0, total_height + 1].iter() {
-        for x in range(0, total_width) {
+        for x in 0 .. total_width {
             mv(*y, x);
             printw(" ");
         }
@@ -62,7 +62,7 @@ fn draw_border(s: &Session) {
 
     /* Left and right borders */
     for x in vec![0, total_width - 1].iter() {
-        for y in range(0, total_height) {
+        for y in 0 .. total_height {
             mv(y, *x);
             printw(" ");
         }
@@ -78,9 +78,9 @@ fn draw_map_contents(s: &Session) {
     let w = s.map_width();
     let h = s.map_height();
 
-    for y in range(0, h) {
-        for x in range(0, w) {
-            let coord = (x as uint, y as uint);
+    for y in 0 .. h {
+        for x in 0 .. w {
+            let coord = (x as u32, y as u32);
             mv(y+1, x+1);
 
             /* Are there things at the current location? */

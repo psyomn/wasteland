@@ -6,7 +6,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "libc"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "ncurses"
 version = "5.71.1"
-source = "git+https://github.com/jeaye/ncurses-rs.git#37a9b03ca9bcb1eeb7ef3136e33360e85c294b5f"
+source = "git+https://github.com/jeaye/ncurses-rs.git#5f2dc7248624284177a03646a6ee88b4c78dc9a7"
+dependencies = [
+ "libc 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 

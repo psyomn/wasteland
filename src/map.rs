@@ -11,7 +11,7 @@ pub struct Map {
     width: u32,
 }
 
-impl fmt::Show for Map {
+impl fmt::Display for Map {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         writeln!(f, "{}", self.name);
 
@@ -34,10 +34,10 @@ impl Map {
                   height: h,
                   width:  w };
 
-        for curr_height in range(0u32, h) {
+        for curr_height in 0u32 .. h {
             /* make height of map */
             map.tiles.push(vec![]);
-            for _ in range(0u32, w) {
+            for _ in 0u32 .. w {
                 /* For each vector we place the tile */
                 let chz = curr_height as usize;
                 map.tiles[chz].push(Tile::new());
@@ -57,9 +57,9 @@ impl Map {
     pub fn width(&self)  -> u32 { self.width }
 
     /// Place an entity at a particular coordinate on map
-    pub fn place_entity_at(&mut self, x: uint, y: uint, e: Box<Entity>) {
-        assert!(x < self.width as uint);
-        assert!(y < self.height as uint);
+    pub fn place_entity_at(&mut self, x: u32, y: u32, e: Box<Entity>) {
+        assert!(x < self.width);
+        assert!(y < self.height);
         self.tiles[y][x].add_entity(e);
     }
 
@@ -69,13 +69,14 @@ impl Map {
     }
 
     /// Counts the number of entities on a particular tile
-    pub fn count_at(&self, coord: (uint, uint)) -> uint {
+    pub fn count_at(&self, coord: (u32, u32)) -> u32 {
         let (x, y) = coord;
         self.tiles[y][x].count()
     }
 
     /// Give a reference to some tile, the particular player.
-    pub fn place_player(player: &Entity) {
+    pub fn place_player(&mut self, player: Box<Entity>) {
+        self.tiles[0][0].set_player(Some(player));
     }
 
 }
